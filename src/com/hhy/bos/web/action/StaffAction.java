@@ -84,4 +84,21 @@ public class StaffAction extends BaseAction<Staff>{
 		staffService.deleteBatch(ids);
 		return "list";
 	}
+	
+	/**
+	 * 修改取派员信息
+	 */
+	public String edit(){
+		//先查询数据库原始数据
+		Staff staff = staffService.findById(model.getId());   //这个staff对象是从数据库当中直接查出来的。是持久对象，下面是对于持久对象的修改。  修改完再写回数据库
+		//再按照页面提交的参数进行覆盖
+		staff.setName(model.getName());
+		staff.setTelephone(model.getTelephone());
+		staff.setHaspda(model.getStation());
+		staff.setHaspda(model.getHaspda());
+		staff.setStandard(model.getStandard());
+		
+		staffService.update(staff);
+		return "list";
+	}
 }
