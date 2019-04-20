@@ -40,8 +40,25 @@
 		alert("查看...");
 	}
 	
+	//批量删除取派员
 	function doDelete(){
-		alert("删除...");
+		//判断当前用户是否选中记录
+		var rows = $("#grid").datagrid("getSelections");
+		if (rows.length == 0) {
+			//没有选中，提示用户
+			$.messager.alert("提示信息", "请选择需要删除的记录！", "warning");
+		}else {
+			var array = new Array();
+			//选中了需要删除的记录,获取选中行的id
+			 for (var i = 0; i < rows.length; i++) {
+				var id = rows[i].id;
+				array.push(id);
+			}
+			var ids = array.join(",");
+			//alert(ids);
+			//发送请求，传送ids参数
+			window.location.href = '${pageContext.request.contextPath}/staffAction_delete.action?ids='+ids;
+		}
 	}
 	
 	function doRestore(){
@@ -128,12 +145,12 @@
 			iconCls : 'icon-forward',
 			fit : true,
 			border : false,
-			rownumbers : true,
-			striped : true,
-			pageList: [30,50,100],
+			rownumbers : true,   //显示行号
+			striped : true,		//纹理效果
+			pageList: [3,5,7,10],
 			pagination : true,
-			toolbar : toolbar,
-			url : "json/staff.json",
+			toolbar : toolbar, //工具栏
+			url : "${pageContext.request.contextPath}/staffAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -158,7 +175,7 @@
 	
 	//扩展手机号校验规则，
 	$(function(){
-		//定义手机号校验规则
+		//利用正则表达式，定义手机号校验规则
 		var reg = /^1[3|4|5|7|8|9][0-9]{9}$/;
 		$.extend($.fn.validatebox.defaults.rules, { 
 				phonenumber: { 

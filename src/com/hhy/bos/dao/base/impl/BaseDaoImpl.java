@@ -10,8 +10,11 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.hhy.bos.dao.base.IBaseDao;
+import com.hhy.bos.utils.PageBean;
 /**
    * 持久层通用实现
  * @author hehaiyang
@@ -69,6 +72,10 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>{
 	 */
 	public void execteUpdate(String queryName, Object... objects) {
 		Session session = this.getSession();//从本地线程中，获得session对象    
+		
+		/*Criteria criteria = session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("id", 100));*/
+		
 		//使用命名查询语句获得一个查询对象
 		Query query = session.getNamedQuery(queryName);
 		//为HQL语句的属性进行赋值
@@ -78,5 +85,30 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>{
 		}
 		query.executeUpdate();  //执行更新操作
 	}
-	
+
+	/**
+	 * 通用的分页查询方法，避免了拼接字符串，拼hql语句
+	 */
+	public void pageQuery(PageBean pageBean) {
+		int currentPage = pageBean.getCurrentPage();
+		int pageSize = pageBean.getPageSize();
+		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+		//总的数据量，  select count(*) from bc_staff
+		//需要改变Hibernate框架发出sql的形式
+		detachedCriteria.setProjection(Projections.rowCount());   // select count(*) from bc_staff，发的sql语句比较特殊，会重置表和类的映射关系
+		
+		//在这边jdk1.7  和 jdk1.8有一些不同
+		List<Object> list = this.getHibernateTemplate().findByCriteria(detachedCriteria);
+		Long total = (Long) list.get(0);
+		
+		pageBean.setTotal(total.intValue());//设置总数据量
+		detachedCriteria.setProjection(null);//重置回来，修改sql的形式为select * from ....
+		//重置表和类的映射关系
+		detachedCriteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
+		//当前页展示的数据集合
+		int firstResult = (currentPage - 1) * pageSize;
+		int maxResults = pageSize;
+		List rows = this.getHibernateTemplate().findByCriteria(detachedCriteria, firstResult, maxResults);
+		pageBean.setRows(rows);
+	}
 }
