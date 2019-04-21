@@ -26,6 +26,9 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath }/js/outOfBounds.js"
+	type="text/javascript"></script>	
 <script type="text/javascript">
 	function doAdd(){
 		$('#addDecidedzoneWindow').window("open");

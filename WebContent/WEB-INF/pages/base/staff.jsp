@@ -153,24 +153,39 @@
 			url : "${pageContext.request.contextPath}/staffAction_pageQuery.action",
 			idField : 'id',
 			columns : columns,
-			onDblClickRow : doDblClickRow
+			onDblClickRow : doDblClickRow    //指定数据表格双击某一行的事件
 		});
 		
 		// 添加取派员窗口
 		$('#addStaffWindow').window({
 	        title: '添加取派员',
 	        width: 400,
-	        modal: true,
-	        shadow: true,
-	        closed: true,
+	        modal: true,   //遮罩效果
+	        shadow: true,	//阴影效果
+	        closed: true,	//关闭状态
 	        height: 400,
-	        resizable:false
+	        resizable:false		//窗口是否可以调整大小
 	    });
 		
+		// 修改取派员窗口
+		$('#editStaffWindow').window({
+	        title: '修改取派员',
+	        width: 400,
+	        modal: true,   //遮罩效果
+	        shadow: true,	//阴影效果
+	        closed: true,	//关闭状态
+	        height: 400,
+	        resizable:false		//窗口是否可以调整大小
+	    });
 	});
 
+	//双击事件处理函数
 	function doDblClickRow(rowIndex, rowData){
-		alert("双击表格数据...");
+		$('#editStaffWindow').window("open");   //打开修改窗口，回显数据
+		//$("input[name=name]").val(rowData.name);
+		//alert(rowData.name);
+		$("#editStaffForm").form("load",rowData); //将rowData数据装载到表单当中
+		
 	}
 	
 	//扩展手机号校验规则，
@@ -215,6 +230,66 @@
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
 			<form id="addStaffForm" action="${pageContext.request.contextPath }/staffAction_add.action" 
 				method="post">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">收派员信息</td>
+					</tr>
+					<!-- TODO 这里完善收派员添加 table -->
+					<tr>
+						<td>姓名</td>
+						<td><input type="text" name="name" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>手机</td>
+						<td><input type="text" name="telephone" class="easyui-validatebox" required="true"
+								data-options="validType:'phonenumber'"
+						/></td>
+					</tr>
+					<tr>
+						<td>单位</td>
+						<td><input type="text" name="station" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<input type="checkbox" name="haspda" value="1" />
+						是否有PDA</td>
+					</tr>
+					<tr>
+						<td>取派标准</td>
+						<td>
+							<input type="text" name="standard" class="easyui-validatebox" required="true"/>  
+						</td>
+					</tr>
+					</table>
+			</form>
+		</div>
+	</div>
+	
+	<!-- 对取派员信息进行修改的窗口 -->
+	<div class="easyui-window" title="对收派员进行添加或者修改" id="editStaffWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
+			<div class="datagrid-toolbar">
+				<a id="edit" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<script type="text/javascript">
+					$(function name() {
+						//绑定事件
+						$("#edit").click(function(){
+							//校验表单的输入项
+							var v = $("#editStaffForm").form("validate");
+							if(v){
+								//校验通过，提交表单项
+								$("#editStaffForm").submit();
+							}
+						});
+					});
+				</script>
+			</div>
+		</div>
+		
+		<div region="center" style="overflow:auto;padding:5px;" border="false">
+			<form id="editStaffForm" action="${pageContext.request.contextPath }/staffAction_edit.action" 
+				method="post">
+					<input type="hidden" name="id">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">收派员信息</td>

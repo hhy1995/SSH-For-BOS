@@ -26,6 +26,9 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<script
+	src="${pageContext.request.contextPath }/js/outOfBounds.js"
+	type="text/javascript"></script>	
 <script type="text/javascript">
 	function doAdd(){
 		$('#addSubareaWindow').window("open");
@@ -224,7 +227,8 @@
 						<td>选择区域</td>
 						<td>
 							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
+    							data-options="valueField:'id',textField:'name',
+    							url:'${pageContext.request.contextPath}/regionAction_listajax.action'" />  
 						</td>
 					</tr>
 					<tr>
