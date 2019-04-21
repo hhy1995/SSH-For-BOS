@@ -1,5 +1,6 @@
 package com.hhy.bos.domain;
 
+
 /**
  * ·ÖÇø
  * @author hehaiyang
@@ -9,7 +10,6 @@ package com.hhy.bos.domain;
 public class Subarea implements java.io.Serializable {
 
 	// Fields
-
 	private String id;
 	private Decidedzone decidedzone;
 	private Region region;

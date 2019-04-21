@@ -99,16 +99,32 @@ public class RegionAction extends BaseAction<Region>{
 	 */
 	public String pageQuery() throws IOException{
 		regionService.pageQuery(pageBean);
-		this.writePageBean2Json(pageBean, new String[]{"currentPage","detachedCriteria","pageSize"});
+		this.writePageBean2Json(pageBean, new String[]{"currentPage","detachedCriteria","pageSize","subareas"});
 		return NONE;
 	}
 	
+	//模糊查询条件
+	private String q;
+	
+	public String getQ() {
+		return q;
+	}
+	public void setQ(String q) {
+		this.q = q;
+	}
+
+
 	/**
 	 * 查询所有的区域数据吗，返回json
 	 * @throws IOException 
 	 */
 	public String listajax() throws IOException{
-		List<Region> list = regionService.findAll();
+		List<Region> list = null;
+		if (StringUtils.isNotBlank(q)) {
+			list = regionService.findByQ(q);
+		}else {
+			list = regionService.findAll();
+		}
 		String[] excludes = new String[]{"subareas"};
 		this.writeList2Json(list, excludes);
 		return NONE;

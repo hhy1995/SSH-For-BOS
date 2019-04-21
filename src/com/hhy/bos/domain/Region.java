@@ -1,6 +1,7 @@
 package com.hhy.bos.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Set;
  *
  */
 
-public class Region implements java.io.Serializable {
+public class Region implements java.io.Serializable{
 
 	// Fields
 

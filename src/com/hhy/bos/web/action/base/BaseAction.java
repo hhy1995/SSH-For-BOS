@@ -7,8 +7,11 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hhy.bos.domain.Region;
+import com.hhy.bos.service.IRegionService;
+import com.hhy.bos.service.IStaffService;
+import com.hhy.bos.service.ISubareaService;
 import com.hhy.bos.utils.PageBean;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -24,6 +27,14 @@ import net.sf.json.JsonConfig;
  * @param <T>
  */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
+	//×¢ÈëService
+	@Autowired
+	protected IRegionService regionService;
+	@Autowired
+	protected IStaffService staffService;
+	@Autowired
+	protected ISubareaService subareaService;
+	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;
 	public void setRows(int rows) {

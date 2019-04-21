@@ -47,5 +47,10 @@
 			<result name="list">/WEB-INF/pages/base/region.jsp</result>
 		</action>
 		
+		<!-- 分区管理 -->
+		<action name="subareaAction_*" class="subareaAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/subarea.jsp</result>
+		</action>
+		
 	</package>
 </struts>
