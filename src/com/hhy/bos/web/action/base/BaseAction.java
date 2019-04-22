@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hhy.bos.service.IDecidedzoneService;
 import com.hhy.bos.service.IRegionService;
 import com.hhy.bos.service.IStaffService;
 import com.hhy.bos.service.ISubareaService;
@@ -34,6 +35,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected IStaffService staffService;
 	@Autowired
 	protected ISubareaService subareaService;
+	@Autowired
+	protected IDecidedzoneService decidedzoneService;
 	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;

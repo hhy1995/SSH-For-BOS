@@ -1,5 +1,9 @@
 package com.hhy.bos.service.impl;
 
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,4 +45,15 @@ public class StaffServiceImpl implements IStaffService{
 	public void update(Staff staff) {
 		staffDao.update(staff);
 	}
+
+	/**
+	 * 用于查询没有作废的取派员，也就是在数据库当中，标志位deltag为‘0’的取派员
+	 */
+	public List<Staff> findListNotDelete() {
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);
+		detachedCriteria.add(Restrictions.eq("deltag", "0"));
+		return staffDao.findByCriteria(detachedCriteria);
+	}
+
+	
 }

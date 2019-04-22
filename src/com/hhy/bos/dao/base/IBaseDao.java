@@ -3,6 +3,8 @@ package com.hhy.bos.dao.base;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import com.hhy.bos.domain.Region;
 import com.hhy.bos.utils.PageBean;
 
@@ -20,5 +22,7 @@ public interface IBaseDao<T> {
 	//提供通用的修改方法
 	public void execteUpdate(String queryName,Object ...objects);
 	public void pageQuery(PageBean pageBean);
+	
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria);
 	
 }

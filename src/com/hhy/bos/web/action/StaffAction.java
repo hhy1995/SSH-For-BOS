@@ -2,6 +2,7 @@ package com.hhy.bos.web.action;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -73,5 +74,16 @@ public class StaffAction extends BaseAction<Staff>{
 		
 		staffService.update(staff);
 		return "list";
+	}
+	
+	/**
+	 * 查询没有作废的取派员，返回json
+	 * @throws IOException 
+	 */
+	public String listajax() throws IOException{
+		List<Staff> list = staffService.findListNotDelete();
+		String[] excludes = new String[]{"decidedzones"};
+		this.writeList2Json(list, excludes);
+		return NONE;
 	}
 }

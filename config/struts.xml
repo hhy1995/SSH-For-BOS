@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.objectFactory" value="spring"/> 
 	<!-- 注册国际化文件 -->
 	<constant name="struts.custom.i18n.resources" value="message"></constant>
 	<package name="basicstruts2" extends="struts-default">
@@ -23,7 +23,7 @@
 		<!-- 指定默认栈 -->
 		<default-interceptor-ref name="myStack"/>
 		
-		<!-- 定义全局结果集 -->
+		<!-- 定义全局结果集 --> 
 		<global-results>
 				<result name="login">/login.jsp</result>
 		</global-results>
@@ -52,5 +52,9 @@
 			<result name="list">/WEB-INF/pages/base/subarea.jsp</result>
 		</action>
 		
+		<!-- 定区管理 -->
+		<action name="decidedzoneAction_*" class="decidedzoneAction" method="{1}">
+			<result name="list">/WEB-INF/pages/base/decidedzone.jsp</result>
+		</action>
 	</package>
 </struts>

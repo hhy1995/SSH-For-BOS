@@ -1,5 +1,7 @@
 package com.hhy.bos.service;
 
+import java.util.List;
+
 import com.hhy.bos.domain.Staff;
 import com.hhy.bos.utils.PageBean;
 
@@ -18,5 +20,6 @@ public interface IStaffService {
 
 	public void update(Staff staff);
 
+	public List<Staff> findListNotDelete();
 
 }
