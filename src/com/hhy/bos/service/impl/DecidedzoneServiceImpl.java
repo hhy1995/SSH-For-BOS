@@ -9,6 +9,7 @@ import com.hhy.bos.dao.ISubareaDao;
 import com.hhy.bos.domain.Decidedzone;
 import com.hhy.bos.domain.Subarea;
 import com.hhy.bos.service.IDecidedzoneService;
+import com.hhy.bos.utils.PageBean;
 
 @Service
 @Transactional
@@ -27,10 +28,14 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService{
 		//关联分区对象和定区对象
 		for (String sid : subareaid) {
 			Subarea subarea = subareaDao.findById(sid);
-			//分区对象关联定区对象，多的一方关联少的一方
+			//分区对象关联定区对象，多的一方关联少的一方。   从java这样实现，会执行很多select语句
 			//UPDATE Subarea SET decidedzone = ? WHERE id = ?;
 			subarea.setDecidedzone(model);
 		}
+	}
+
+	public void pageQuery(PageBean pageBean) {
+		decidedzoneDao.pageQuery(pageBean);
 	}
 
 }
