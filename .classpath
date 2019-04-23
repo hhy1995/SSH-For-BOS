@@ -49,6 +49,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/poi-3.9-20121203.jar" sourcepath="WebContent/WEB-INF/lib/poi-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hessian-4.0.33.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_161"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

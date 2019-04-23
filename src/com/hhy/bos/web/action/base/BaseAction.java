@@ -5,14 +5,18 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.hhy.bos.crm.CustomerService;
 import com.hhy.bos.service.IDecidedzoneService;
 import com.hhy.bos.service.IRegionService;
 import com.hhy.bos.service.IStaffService;
 import com.hhy.bos.service.ISubareaService;
+import com.hhy.bos.service.IUserService;
 import com.hhy.bos.utils.PageBean;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -29,6 +33,8 @@ import net.sf.json.JsonConfig;
  */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	//×¢ÈëService
+	@Resource
+	protected IUserService userService;
 	@Autowired
 	protected IRegionService regionService;
 	@Autowired
@@ -37,6 +43,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected ISubareaService subareaService;
 	@Autowired
 	protected IDecidedzoneService decidedzoneService;
+	@Autowired
+	protected CustomerService customerService;
 	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;

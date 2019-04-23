@@ -63,4 +63,13 @@
 	<context:annotation-config/>
 	<!-- 事务注解 -->
 	<tx:annotation-driven/>
+	
+	<!-- 配置远程服务代理对象 -->
+	<bean id="customerService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+		<!-- 注入接口类型 -->
+		<property name="serviceInterface" value="com.hhy.bos.crm.CustomerService"/>
+		<!-- 服务访问路径 -->
+		<property name="serviceUrl" value="http://localhost:8080/crm/remoting/customer"/>
+	</bean>
+	
 </beans>

@@ -13,6 +13,8 @@ import com.hhy.bos.domain.User;
 import com.hhy.bos.service.IUserService;
 import com.hhy.bos.utils.MD5Utils;
 import com.hhy.bos.web.action.base.BaseAction;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 
 
 
@@ -20,12 +22,10 @@ import com.hhy.bos.web.action.base.BaseAction;
 @Scope("prototype")
 public class UserAction extends BaseAction<User>{
 	
-	@Resource
-	private IUserService userService;
-	
 	//通过属性驱动来接收验证码
 	private String checkcode;
-	public String login() {
+	public String login() {		
+		ValueStack valueStack = ActionContext.getContext().getValueStack();
 		//生成的验证码
 		String key = (String)ServletActionContext.getRequest().getSession().getAttribute("key");
 		
