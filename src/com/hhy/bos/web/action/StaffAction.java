@@ -35,7 +35,7 @@ public class StaffAction extends BaseAction<Staff>{
 	}
 	
 	/**
-	 * 分页查询方法
+	 * 分页查询方法，要注意数据库当中关联的字段长度要保持一致，在多表级联查询时会出现问题
 	 * @throws IOException 
 	 */
 	public String pageQuery() throws IOException{
