@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hhy.bos.crm.CustomerService;
 import com.hhy.bos.service.IDecidedzoneService;
+import com.hhy.bos.service.INoticebillService;
 import com.hhy.bos.service.IRegionService;
 import com.hhy.bos.service.IStaffService;
 import com.hhy.bos.service.ISubareaService;
@@ -45,6 +46,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected IDecidedzoneService decidedzoneService;
 	@Autowired
 	protected CustomerService customerService;
+	@Autowired
+	protected INoticebillService noticebillService;
 	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;
@@ -106,6 +109,21 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 		JsonConfig jsonConfig = new JsonConfig();
 		jsonConfig.setExcludes(excludes);   
 		JSONArray jsonObject = JSONArray.fromObject(list, jsonConfig);
+		String json = jsonObject.toString();
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		ServletActionContext.getResponse().getWriter().print(json);
+	}
+	
+	/**
+	 * 将customer对象转化成json
+	 * @throws IOException 
+	 */
+	public void writeObject2Json(Object object,String[] excludes) throws IOException{
+		//将pageBean对象转化成json对象返回
+		JsonConfig jsonConfig = new JsonConfig();
+		//利用jsonConfig对json序列化的对象进行设置，排除一些不需要进行序列化的属性
+		jsonConfig.setExcludes(excludes);   
+		JSONObject jsonObject = JSONObject.fromObject(object, jsonConfig);
 		String json = jsonObject.toString();
 		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(json);
