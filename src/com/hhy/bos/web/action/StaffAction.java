@@ -41,7 +41,7 @@ public class StaffAction extends BaseAction<Staff>{
 	public String pageQuery() throws IOException{
 	
 		staffService.pageQuery(pageBean);  //最终使用的是BaseDao当中的query方法
-		this.writePageBean2Json(pageBean, new String[]{"currentPage","detachedCriteria","pageSize"});
+		this.writePageBean2Json(pageBean, new String[]{"currentPage","detachedCriteria","pageSize","decidedzones"});
 		return NONE;
 	}
 	
