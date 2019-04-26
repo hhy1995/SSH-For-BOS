@@ -128,4 +128,14 @@ public class UserAction extends BaseAction<User>{
 		return NONE;
 	}
 	
+	/**
+	 * 用户分页查询
+	 * @throws IOException 
+	 */
+	public String pageQuery() throws IOException{
+		userService.pageQuery(pageBean);
+		String[] excludes = new String[]{"noticebills","roles"};
+		this.writePageBean2Json(pageBean, excludes);
+		return NONE;
+	}
 }

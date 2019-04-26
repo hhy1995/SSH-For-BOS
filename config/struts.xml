@@ -73,5 +73,15 @@
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
 			<result name="addUI">/WEB-INF/pages/qupai/quickworkorder.jsp</result>
 		</action>
+		
+		<!-- 配置权限管理 -->
+		<action name="functionAction_*" class="functionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/function_add.jsp</result>
+		</action>
+		
+		<!-- 角色管理 -->
+		<action name="roleAction_*" class="roleAction" method="{1}">
+			<result name="list">/WEB-INF/pages/admin/role.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hhy.bos.crm.CustomerService;
 import com.hhy.bos.service.IDecidedzoneService;
+import com.hhy.bos.service.IFunctionService;
 import com.hhy.bos.service.INoticebillService;
 import com.hhy.bos.service.IRegionService;
+import com.hhy.bos.service.IRoleService;
 import com.hhy.bos.service.IStaffService;
 import com.hhy.bos.service.ISubareaService;
 import com.hhy.bos.service.IUserService;
@@ -52,6 +54,10 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected INoticebillService noticebillService;
 	@Autowired
 	protected IWorkordermanageService workordermanageService;
+	@Autowired
+	protected IFunctionService functionService;
+	@Autowired
+	protected IRoleService roleService;
 	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;

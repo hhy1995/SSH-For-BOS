@@ -25,7 +25,13 @@ public class User implements java.io.Serializable {
 	private Set<Role> roles = new HashSet<Role>();
 	// Constructors
 
-	
+	public String getRoleNames(){
+		String names = "";
+		for (Role role : roles) {
+			names += role.getName() + " ";
+		}
+		return names;
+	}
 
 	/** default constructor */
 	public User() {
