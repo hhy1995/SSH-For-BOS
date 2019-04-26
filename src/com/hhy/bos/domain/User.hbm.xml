@@ -35,11 +35,24 @@
         <property name="remark" type="java.lang.String">
             <column name="remark" />
         </property>
+        <set name="noticebills" inverse="true">
+            <key>
+                <column name="user_id" length="64" />
+            </key>
+            <one-to-many class="com.hhy.bos.domain.Noticebill" />
+        </set>
+        <set name="roles" table="user_role" catalog="bos">
+            <key>
+                <column name="user_id" length="64" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.hhy.bos.domain.Role">
+                <column name="role_id" length="64" not-null="true" />
+            </many-to-many>
+        </set>
     </class>
     <!-- 定义修改密码的查询语句 -->
     <query name="editPassword">
     	UPDATE User SET password = ? WHERE id = ?
     </query>
-    
     
 </hibernate-mapping>

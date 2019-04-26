@@ -18,6 +18,7 @@ import com.hhy.bos.service.IRegionService;
 import com.hhy.bos.service.IStaffService;
 import com.hhy.bos.service.ISubareaService;
 import com.hhy.bos.service.IUserService;
+import com.hhy.bos.service.IWorkordermanageService;
 import com.hhy.bos.utils.PageBean;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -33,6 +34,7 @@ import net.sf.json.JsonConfig;
  * @param <T>
  */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
+	private static final String ParameterizedType = null;
 	//注入Service
 	@Resource
 	protected IUserService userService;
@@ -48,6 +50,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected CustomerService customerService;
 	@Autowired
 	protected INoticebillService noticebillService;
+	@Autowired
+	protected IWorkordermanageService workordermanageService;
 	
 	protected PageBean pageBean = new PageBean();
 	DetachedCriteria detachedCriteria = null;
@@ -83,7 +87,12 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	 * 在构造方法中，动态获得实体类型，通过反射创建模型对象
 	 */
 	public BaseAction() {
-		ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
+		ParameterizedType genericSuperclass = null;
+		if (this.getClass().getGenericSuperclass() instanceof ParameterizedType) {
+			genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
+		}else {//当前为Action创建了代理
+			genericSuperclass = (ParameterizedType) this.getClass().getSuperclass().getGenericSuperclass();
+		}
 		Type[] actualTypeArguments = genericSuperclass.getActualTypeArguments();
 		//获得实体类型
 		Class<T> entityClass = (Class<T>) actualTypeArguments[0];

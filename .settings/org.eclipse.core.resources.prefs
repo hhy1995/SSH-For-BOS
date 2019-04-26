@@ -6,6 +6,7 @@ encoding//WebContent/json/menu.json=UTF-8
 encoding//WebContent/json/region.json=UTF-8
 encoding//WebContent/json/staff.json=UTF-8
 encoding//WebContent/json/subarea.json=UTF-8
+encoding//WebContent/unauthorizedUrl.jsp=UTF-8
 encoding//src/com/hhy/bos/crm/CustomerService.java=UTF-8
 encoding//src/com/hhy/bos/utils/FileUtils.java=UTF-8
 encoding//src/com/hhy/bos/utils/MD5Utils.java=UTF-8

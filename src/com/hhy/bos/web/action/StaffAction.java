@@ -4,6 +4,8 @@ package com.hhy.bos.web.action;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -54,6 +56,8 @@ public class StaffAction extends BaseAction<Staff>{
 	 * 批量删除功能（逻辑删除）
 	 * @return
 	 */
+	@RequiresPermissions(value="staff")   //执行当前方法需要具有“staff”权限
+	@RequiresRoles(value="abc")
 	public String delete(){
 		staffService.deleteBatch(ids);
 		return "list";
@@ -63,6 +67,7 @@ public class StaffAction extends BaseAction<Staff>{
 	 * 修改取派员信息
 	 */
 	public String edit(){
+		
 		//先查询数据库原始数据
 		Staff staff = staffService.findById(model.getId());   //这个staff对象是从数据库当中直接查出来的。是持久对象，下面是对于持久对象的修改。  修改完再写回数据库
 		//再按照页面提交的参数进行覆盖

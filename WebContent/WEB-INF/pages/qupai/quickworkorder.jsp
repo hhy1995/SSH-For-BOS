@@ -27,11 +27,11 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-	var editIndex ;
+	var editIndex ;  //全局行索引
 	
 	function doAdd(){
-		if(editIndex != undefined){
-			$("#grid").datagrid('endEdit',editIndex);
+		if(editIndex != undefined){  //当前存在一行正在编辑
+			$("#grid").datagrid('endEdit',editIndex); //结束编辑状态
 		}
 		if(editIndex==undefined){
 			//alert("快速添加电子单...");
@@ -48,6 +48,7 @@
 		$("#grid").datagrid('endEdit',editIndex );
 	}
 	
+	//取消编辑
 	function doCancel(){
 		if(editIndex!=undefined){
 			$("#grid").datagrid('cancelEdit',editIndex);
@@ -165,6 +166,18 @@
 			onAfterEdit : function(rowIndex, rowData, changes){
 				console.info(rowData);
 				editIndex = undefined;
+				
+				//发送ajax请求，提交当前结束编辑行的数据到服务器，完成保存操作
+				var url = "${pageContext.request.contextPath}/workordermanageAction_add.action";
+				$.post(url,rowData,function(data){
+					if (data) {
+						//录入成功
+						$.messager.alert("提示信息", "工作单录入成功！","info");
+					}else{
+						//录入失败
+						$.messager.alert("提示信息", "工作单录入失败","warning");
+					}
+				});
 			}
 		});
 	});
