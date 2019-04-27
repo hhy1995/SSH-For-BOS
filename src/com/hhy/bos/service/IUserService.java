@@ -10,5 +10,7 @@ public interface IUserService {
 	public void editPassword(String password, String id);
 
 	public void pageQuery(PageBean pageBean);
+
+	public void save(User model, String[] roleIds);
 	
 }

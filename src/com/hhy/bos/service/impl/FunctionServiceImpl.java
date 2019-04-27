@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hhy.bos.dao.IFunctionDao;
 import com.hhy.bos.domain.Function;
+import com.hhy.bos.domain.User;
 import com.hhy.bos.service.IFunctionService;
+import com.hhy.bos.utils.BOSContext;
 import com.hhy.bos.utils.PageBean;
 
 @Service
@@ -32,5 +34,20 @@ public class FunctionServiceImpl implements IFunctionService {
 			model.setFunction(null);
 		}
 		functionDao.save(model);
+	}
+	/**
+	 * 查询菜单
+	 */
+	public List<Function> findMenu() {
+		User user = BOSContext.getLoginUser();
+		List<Function> list = null;
+		if (user.getUsername().equals("admin")) {
+			//超级管理员，查询所有菜单
+			list = functionDao.findAllMenu();
+		}else{
+			
+			list = functionDao.findMenuByUserid(user.getId());
+		}
+		return list;
 	}
 }

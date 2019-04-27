@@ -1,6 +1,8 @@
 package com.hhy.bos.service.impl;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,6 +33,10 @@ public class RoleServiceImpl implements IRoleService{
 
 	public void pageQuery(PageBean pageBean) {
 		roleDao.pageQuery(pageBean);
+	}
+
+	public List<Role> findAll() {
+		return roleDao.findAll();
 	}
 
 }

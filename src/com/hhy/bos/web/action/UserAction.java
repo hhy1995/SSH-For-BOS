@@ -138,4 +138,22 @@ public class UserAction extends BaseAction<User>{
 		this.writePageBean2Json(pageBean, excludes);
 		return NONE;
 	}
+	
+	//接收角色数据
+	private String[] roleIds;	
+	public String[] getRoleIds() {
+		return roleIds;
+	}
+	public void setRoleIds(String[] roleIds) {
+		this.roleIds = roleIds;
+	}
+
+	/**
+	 * 添加用户
+	 * @return
+	 */
+	public String add(){
+		userService.save(model,roleIds);
+		return "list";
+	}
 }

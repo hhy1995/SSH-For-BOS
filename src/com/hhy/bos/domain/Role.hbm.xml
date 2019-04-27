@@ -20,7 +20,7 @@
         <property name="description" type="java.lang.String">
             <column name="description" />
         </property>
-        <set name="functions" table="role_function" catalog="bos">
+        <set name="functions" table="role_function" catalog="bos" cascade="save-update,persist">
             <key>
                 <column name="role_id" length="64" not-null="true" />
             </key>
@@ -28,7 +28,7 @@
                 <column name="function_id" length="64" not-null="true" />
             </many-to-many>
         </set>
-        <set name="users" inverse="true" table="user_role" catalog="bos">
+        <set name="users" inverse="true" table="user_role" catalog="bos" cascade="save-update,persist">
             <key>
                 <column name="role_id" length="64" not-null="true" />
             </key>

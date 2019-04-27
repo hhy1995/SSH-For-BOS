@@ -1,5 +1,7 @@
 package com.hhy.bos.shiro;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -12,7 +14,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
+import com.hhy.bos.dao.IFunctionDao;
 import com.hhy.bos.dao.IUserDao;
+import com.hhy.bos.domain.Function;
 import com.hhy.bos.domain.User;
 
 /**
@@ -25,6 +29,8 @@ public class BOSRealm extends AuthorizingRealm {
 	
 	@Resource
 	private IUserDao userDao;
+	@Resource
+	private IFunctionDao functionDao;
 	/**
 	 * 认证方法
 	 */
@@ -59,9 +65,19 @@ public class BOSRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.addStringPermission("staff");//为当前用户授予staff权限
-		//TODO 根据当前登录用户来查询数据库，来查询其对应的权限数据
-		info.addRole("staff");
+		//根据当前登录用户，查询其对应的权限，然后再进行授权
+		User user = (User) principals.getPrimaryPrincipal();
+		List<Function> list = null;
+		if (user.getUsername().equals("admin")) {
+			//当前用户是超级管理员，查询所有的权限，为用户进行授权
+			list = functionDao.findAll();
+		}else {
+			//普通用户，根据用户的id查询其对应的权限
+			list = functionDao.findListByUserid(user.getId());
+		}
+		for (Function function : list) {
+			info.addStringPermission(function.getCode());;
+		}
 		return info;
 	}
 }

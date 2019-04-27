@@ -91,7 +91,7 @@
 				/login.jsp* = anon
 				/validatecode.jsp* = anon
 				/userAction_login.action = anon
-				/page_base_staff.action = roles["staff"]
+				/page_base_staff.action = perms["staff"]
 				/* = authc
 			</value>
 		</property>
@@ -101,8 +101,33 @@
 	<bean id="bosRealm" class="com.hhy.bos.shiro.BOSRealm"></bean>
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- 注入上面的realm -->
-		<property name="realm" ref="bosRealm"></property>
+		<property name="realm" ref="bosRealm"/>
+		<!-- 注入缓存管理器 -->
+		<!-- <property name="cacheManager" ref="cacheManager">
+			<bean class="org.apache.shiro.cache.ehcache.EhCacheManager">
+				<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+			</bean>
+		</property> -->
+		<property name="cacheManager" ref="shiroCacheManager"></property>
+		
 	</bean>
+	<!-- shiro封装cacheManager -->
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehcacheManagerFactory"></property>
+	</bean>
+
+	<!-- 注册缓存管理器   一直不成功呀  好烦恼-->
+	<!-- <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+   	    <property name="cacheManager" ref="ehCacheManager"/>  
+	</bean>  
+	<bean id="ehCacheManager" class ="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+	    <property name="configLocation" value="classpath:ehcache.xml" />  
+	    <property name="shared" value="true"></property>  
+	</bean>  -->
+	<!-- <bean id="cachemanager" class ="org.apache.shiro.cache.ehcache.EhCacheManager">  
+	    <property name="configLocation" value="classpath:ehcache.xml" />  
+	    <property name="shared" value="true"></property>  
+	</bean> -->
 	
 	<!-- 开启shiro注解 -->
 	<!-- 自动代理 -->
@@ -113,4 +138,6 @@
 	
 	<!-- 切面类 -->
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"></bean>
+	
+	<import resource="classpath:applicationContext-cache.xml"/>
 </beans>

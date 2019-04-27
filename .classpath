@@ -42,7 +42,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-spring-plugin-2.3.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-core-2.3.7.jar" sourcepath="D:/softwareRepo/framwork/struts-2.5.20-src.zip"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-4.0.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-4.0.0.RELEASE.jar" sourcepath="F:/黑马JAVAEE+hadoop大数据19期/11、第十一阶段项目：物流管理系统（12天）/bos项目-day08/bos项目-day08/资料/com.springsource.net.sf.ehcache-1.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils.jar"/>
@@ -51,6 +51,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pinyin4j-2.5.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hessian-4.0.33.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-all-1.2.2.jar" sourcepath="F:/黑马JAVAEE+hadoop大数据19期/11、第十一阶段项目：物流管理系统（12天）/bos项目-day07/bos项目-day07/资料/shiro使用方法/shiro-root-1.2.2-source-release.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.springsource.net.sf.ehcache-1.6.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_161"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

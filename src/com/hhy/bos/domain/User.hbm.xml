@@ -8,8 +8,8 @@
 <hibernate-mapping>
     <class name="com.hhy.bos.domain.User" table="t_user">
         <id name="id" type="java.lang.String">
-            <column name="id" length="32" />
-            <generator class="assigned" />
+            <column name="id" length="64" />
+            <generator class="uuid" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" not-null="true" />
@@ -35,11 +35,11 @@
         <property name="remark" type="java.lang.String">
             <column name="remark" />
         </property>
-        <set name="noticebills" inverse="true">
+        <set name="noticebills" inverse="true" cascade="save-update,persist">
             <key>
                 <column name="user_id" length="64" />
             </key>
-            <one-to-many class="com.hhy.bos.domain.Noticebill" />
+            <one-to-many class="com.hhy.bos.domain.Noticebill"/>
         </set>
         <set name="roles" table="user_role" catalog="bos">
             <key>

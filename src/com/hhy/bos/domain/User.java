@@ -1,5 +1,6 @@
 package com.hhy.bos.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,14 @@ public class User implements java.io.Serializable {
 	private Set<Role> roles = new HashSet<Role>();
 	// Constructors
 
+	//页面显示的生日有问题，输出形式进行格式化。
+	public String getFormateBirthday(){
+		if (birthday != null) {
+			return new SimpleDateFormat("yyyy-MM-dd").format(birthday);
+		}else{
+			return "未设置生日！";
+		}
+	}
 	public String getRoleNames(){
 		String names = "";
 		for (Role role : roles) {

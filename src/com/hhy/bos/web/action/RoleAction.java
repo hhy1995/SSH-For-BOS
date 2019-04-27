@@ -1,10 +1,12 @@
 package com.hhy.bos.web.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hhy.bos.domain.Function;
 import com.hhy.bos.domain.Role;
 import com.hhy.bos.web.action.base.BaseAction;
 
@@ -41,5 +43,16 @@ public class RoleAction extends BaseAction<Role>{
 		return NONE;
 	}
 	
+	/**
+	 * 查询所有的角色数据，返回json
+	 * @return
+	 * @throws IOException 
+	 */
+	public String listajax() throws IOException{
+		List<Role> list = roleService.findAll();
+		String[] excludes = new String[]{"functions","users"};
+		this.writeList2Json(list, excludes);
+		return NONE;
+	}
 	
 }
