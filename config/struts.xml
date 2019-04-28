@@ -83,5 +83,11 @@
 		<action name="roleAction_*" class="roleAction" method="{1}">
 			<result name="list">/WEB-INF/pages/admin/role.jsp</result>
 		</action>
+		
+		<!-- 流程定义管理 -->
+		<action name="processDefinitionAction_*" class="processDefinitionAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processdefinition_list.jsp</result>
+		</action>
+		
 	</package>
 </struts>

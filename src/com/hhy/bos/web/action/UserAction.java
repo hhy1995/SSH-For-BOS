@@ -2,7 +2,9 @@ package com.hhy.bos.web.action;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 
+import org.activiti.engine.ProcessEngine;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -27,11 +29,12 @@ public class UserAction extends BaseAction<User>{
 	
 	//通过属性驱动来接收验证码
 	private String checkcode;
+	
 	/**
 	 * 使用shiro提供的认证办法进行认证
 	 * @return
 	 */
-	public String login() {		
+	public String login() {
 		//生成的验证码
 		String key = (String)ServletActionContext.getRequest().getSession().getAttribute("key");
 		//判断用户输入的验证码是否是正确的
