@@ -107,7 +107,7 @@
 	var deltag = '${deltag}'; 
 	if(deltag == '1'){
 		//存在关联数据，无法删除
-		$.messager.alert("提示信息", "当前流程定义正在使用不能删除！","warning"	);
+		 $.messager.alert("提示信息", "当前流程定义正在使用不能删除！","warning"	);
 	}
 </script>
 
