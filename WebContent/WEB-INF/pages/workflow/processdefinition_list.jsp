@@ -90,11 +90,11 @@
   						<!-- processDefinitionAction_showpng?id=%{id } -->
   						<a onclick="window.window.showModalDialog('processDefinitionAction_showpng?id=${id}')" 
   									cssClass="easyui-linkbutton" data-options="iconCls:'icon-search'">
-  									查看流程图
+  								查看流程图
   						</a>
   						
   						<a onclick="del('${id }')" cssClass="easyui-linkbutton" data-options="iconCls:'icon-remove'">
-  									删除流程图
+  								删除流程图
   						</a>
   					</td>
   				</tr>
