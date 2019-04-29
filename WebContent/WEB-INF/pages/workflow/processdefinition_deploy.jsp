@@ -29,18 +29,20 @@
 	type="text/javascript"></script>
 </head>
 <body>
-<s:form action="processDefinitionAction_deploy" theme="simple" method="post" enctype="multipart/form-data" id="uploadForm">
+<s:form action="processDefinitionAction_deploy" theme="simple" 
+			method="post" enctype="multipart/form-data" id="uploadForm">
 	<table class="table-edit" width="100%" >
 		<tr class="title"><td colspan="2">发布新流程</td></tr>
 		<tr>
 			<td width="200">浏览流程定义zip压缩文件</td>
 			<td>
-				<input type="file" name="deploy" />
+				<input type="file" name="zipFile" />
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a id="btn" href="javascript:$('#uploadForm').submit();" class="easyui-linkbutton" data-options="iconCls:'icon-save'">发布新流程</a>  
+				<a id="btn" href="javascript:$('#uploadForm').submit();" 
+						class="easyui-linkbutton" data-options="iconCls:'icon-save'">发布新流程</a>  
 			</td>
 		</tr>
 	</table>

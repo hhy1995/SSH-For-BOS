@@ -45,7 +45,19 @@
 				}
 			]
 		});
+		
+		
 	});
+	
+	//定义删除方法
+	function del(id){
+		$.messager.confirm("确认信息", "你确认删除当前流程定义信息吗？", function(r){
+			if (r) {
+				//发送请求，删除数据
+				window.location.href = '${pageContext.request.contextPath}/processDefinitionAction_delete?id='+id;
+			}
+		});
+	}
 </script>	
 </head>
 <body class="easyui-layout">
@@ -65,17 +77,25 @@
   					<!-- 在循环过程中 ，将  processDefinition 对象，同时放入 root和 map中-->
   				<tr>
   					<td>
+  						<%--
+	  						<s:property value="id"/><!-- 从root找 -->
+	  						<s:property value="#processDefinition.id"/><!-- 从map找 -->
+  						 --%>
   						${id }
-  						<s:property value="id"/> <!-- 从root找 -->
-  						<s:property value="#processDefinition.id"/> <!-- 从map找 -->
   					</td>
   					<td><s:property value="name"/></td>
   					<td><s:property value="key"/></td>
   					<td><s:property value="version"/></td>
   					<td>
-  						<s:a action="processDefinitionAction_viewpng" namespace="/" cssClass="easyui-linkbutton" data-options="iconCls:'icon-search'">查看流程图
-  							<s:param name="id" value="id"></s:param>
-  						</s:a>
+  						<!-- processDefinitionAction_showpng?id=%{id } -->
+  						<a onclick="window.window.showModalDialog('processDefinitionAction_showpng?id=${id}')" 
+  									cssClass="easyui-linkbutton" data-options="iconCls:'icon-search'">
+  									查看流程图
+  						</a>
+  						
+  						<a onclick="del('${id }')" cssClass="easyui-linkbutton" data-options="iconCls:'icon-remove'">
+  									删除流程图
+  						</a>
   					</td>
   				</tr>
   				</s:iterator>
@@ -83,4 +103,12 @@
   	</table>
   </div>
 </body>
+<script type="text/javascript">
+	var deltag = '${deltag}'; 
+	if(deltag == '1'){
+		//存在关联数据，无法删除
+		$.messager.alert("提示信息", "当前流程定义正在使用不能删除！","warning"	);
+	}
+</script>
+
 </html>
