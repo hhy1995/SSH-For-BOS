@@ -37,7 +37,7 @@ import net.sf.json.JsonConfig;
  */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	private static final String ParameterizedType = null;
-	//注入Service
+	//在Basection当中注入所有的Service
 	@Resource
 	protected IUserService userService;
 	@Autowired
