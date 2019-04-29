@@ -104,6 +104,7 @@ public class ProcessDefinitionAction extends ActionSupport {
 			// ProcessDefinitionQuery query =
 			// repositoryService.createProcessDefinitionQuery();
 			// 查询最新的版本，排序，然后再执行查询。
+			
 			List<ProcessDefinition> list = query2.latestVersion().orderByProcessDefinitionName().desc().list();
 			ActionContext.getContext().getValueStack().set("list", list);
 			return "list";
