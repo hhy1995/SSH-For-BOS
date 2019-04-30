@@ -65,15 +65,18 @@
   								$("#div${id}").html(data);
   							});
   						</script>
+  						
   						<script type="text/javascript">
   							function showPng(id){
-  								window.showModalDialog("${pageContext.request.contextPath}/processInstanceAction_showPng.action?id="+id);
+  								//弹出模式对话框
+  								window.open("${pageContext.request.contextPath}/processInstanceAction_showPng.action?id="+id,"newwindow","height=600, width=900,top=400,left=600")
   							}
   						</script>
   					</td>
   					<td>
-  						<a onclick="showPng('${id}');" href="#">查看流程图</a>
+  						<a class="easyui-linkbutton"  data-options="iconCls:'icon-search'" onclick="showPng('${id}');" href="#">查看流程图</a>
   					</td>
+  					
   				</tr>
   			</s:iterator>
   		</tbody>

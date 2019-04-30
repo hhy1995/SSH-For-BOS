@@ -45,8 +45,6 @@
 				}
 			]
 		});
-		
-		
 	});
 	
 	//定义删除方法
@@ -58,7 +56,7 @@
 			}
 		});
 	}
-</script>	
+</script>
 </head>
 <body class="easyui-layout">
   <div region="center" >
@@ -88,12 +86,12 @@
   					<td><s:property value="version"/></td>
   					<td>
   						<!-- processDefinitionAction_showpng?id=%{id } -->
-  						<a onclick="window.window.showModalDialog('processDefinitionAction_showpng?id=${id}')" 
-  									cssClass="easyui-linkbutton" data-options="iconCls:'icon-search'">
+  						<a onclick="window.open('processDefinitionAction_showpng?id=${id}','newwindow','height=480, width=800,top=400,left=500')" 
+  									class="easyui-linkbutton" data-options="iconCls:'icon-search'">
   								查看流程图
   						</a>
   						
-  						<a onclick="del('${id }')" cssClass="easyui-linkbutton" data-options="iconCls:'icon-remove'">
+  						<a onclick="del('${id }')" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">
   								删除流程图
   						</a>
   					</td>
