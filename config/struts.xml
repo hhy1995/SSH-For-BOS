@@ -71,7 +71,7 @@
 		
 		<!-- 工作单业务 -->
 		<action name="workordermanageAction_*" class="workordermanageAction" method="{1}">
-			<result name="addUI">/WEB-INF/pages/qupai/quickworkorder.jsp</result>
+			<result name="list">/WEB-INF/pages/workflow/startransfer.jsp</result>
 		</action>
 		
 		<!-- 配置权限管理 -->
@@ -109,5 +109,9 @@
 			</result>
 		</action>
 		
+		<!-- 任务操作 -->
+		<action name="taskAction_*" class="taskAction" method="{1}">
+			<result name="grouptasklist">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+		</action>
 	</package>
 </struts>

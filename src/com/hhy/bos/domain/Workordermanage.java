@@ -29,10 +29,17 @@ public class Workordermanage implements java.io.Serializable {
 	private Integer feeitemnum; //计费件数
 	private Double actlweit; //实际重量
 	private String vol; //体积
-	private String managerCheck; //是否审验配送
 	private Date updatetime;
 
+	private String managerCheck = "0";//是否审核 1：已审核 0：未审核
+	private String start = "0";//对应流程是否已经启动 0：未启动 1：已启动
 	// Constructors
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
 
 	/** default constructor */
 	public Workordermanage() {
@@ -225,4 +232,12 @@ public class Workordermanage implements java.io.Serializable {
 		this.updatetime = updatetime;
 	}
 
+	/**
+	 * 重写toString方法，方便页面展示业务数据
+	 */
+	public String toString() {
+		return "工作单信息 [编号=" + id + ", 货物名称=" + product
+				+ ", 货物重量=" + weight + ", 收货人="
+				+ receivername + ", 收货人电话=" + receiverphone + "]";
+	}
 }
