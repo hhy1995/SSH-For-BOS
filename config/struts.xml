@@ -93,9 +93,19 @@
 				<param name="inputName">pngStream</param>
 				<!-- 
 					<param name="contentDisposition">attachment;filename="abc.png"</param>
-					以附件的形式下载图片，为什么页面一直不显示图片？
+					以附件的形式下载图片，为什么页面一直不显示图片？  函数都用错了 ，能显示出来吗？
 					<param name="bufferSize">1024</param>
 				 -->
+			</result>
+		</action>
+		
+		<!-- 流程实例管理 -->
+		<action name="processInstanceAction_*" class="processInstanceAction" method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processinstance.jsp</result>
+			<result name="showPng">/WEB-INF/pages/workflow/image.jsp</result>
+			<result name="viewImage" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="inputName">pngStream</param>
 			</result>
 		</action>
 		

@@ -69,7 +69,7 @@
   						<script type="text/javascript">
   							function showPng(id){
   								//弹出模式对话框
-  								window.open("${pageContext.request.contextPath}/processInstanceAction_showPng.action?id="+id,"newwindow","height=600, width=900,top=400,left=600")
+  								window.open("${pageContext.request.contextPath}/processInstanceAction_showPng.action?id="+id,"newwindow","height=500, width=800,top=450,left=600")
   							}
   						</script>
   					</td>
