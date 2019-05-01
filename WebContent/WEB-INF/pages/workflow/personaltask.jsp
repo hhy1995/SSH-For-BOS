@@ -28,6 +28,17 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 </head>
+<script type="text/javascript">
+		function showData(taskId){
+			$.post("${pageContext.request.contextPath}/taskAction_showData.action",{"taskId":taskId},function(data){
+				$("#div"+taskId).html(data);
+			});
+		}
+		
+		function toggleData(taskId){
+				$("#div"+taskId).toggle();
+		}
+</script>
 <body class="easyui-layout">
 	<div data-options="region:'center'">
 		<table class="easyui-datagrid" fit="true" nowrap="false">
@@ -39,17 +50,7 @@
 					<th data-options="field:'pick',width:120">办理任务</th>
 				</tr>
 			</thead>
-			<script type="text/javascript">
-				function showData(taskId){
-					$.post("${pageContext.request.contextPath}/taskAction_showData.action",{"taskId":taskId},function(data){
-						$("#div"+taskId).html(data);
-					});
-				}
-				
-				function toggleData(taskId){
-						$("#div"+taskId).toggle();
-				}
-			</script>
+			
 			<tbody>
 				<s:iterator value="list" var="task">
 					<tr>
@@ -64,7 +65,8 @@
 							</div>
 						</td>
 						<td>
-							<s:a action="taskAction_%{taskDefinitionKey}" namespace="/" cssClass="easyui-linkbutton">办理任务
+							<s:a action="taskAction_%{taskDefinitionKey}" 
+									namespace="/" cssClass="easyui-linkbutton">办理任务
 								<s:param name="taskId" value="id"></s:param>
 							</s:a>
 						</td>

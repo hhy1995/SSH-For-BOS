@@ -10,6 +10,10 @@ public interface IWorkordermanageService{
 
 	public List<Workordermanage> findListNotStart();
 
-	public void start();
+	public void start(String id);
+
+	public Workordermanage findById(String workordermanageId);
+
+	public void checkWorkordermanage(String taskId, Integer check, String workordermanageId);
 
 }

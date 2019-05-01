@@ -28,6 +28,18 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 </head>
+<script type="text/javascript">
+		function showData(taskId){
+			//查询流程变量数据
+			$.post("${pageContext.request.contextPath}/taskAction_showData.action",{"taskId":taskId},function(data){
+				$("#div"+taskId).html(data);
+			});
+		}
+		function toggleData(taskId){
+				$("#div"+taskId).toggle();
+		}
+</script>
+
 <body class="easyui-layout">
 	<div data-options="region:'center'">
 		<table class="easyui-datagrid" fit="true" nowrap="false">
@@ -39,19 +51,8 @@
 					<th data-options="field:'pick',width:120">拾取任务</th>
 				</tr>
 			</thead>
-			<script type="text/javascript">
-				function showData(taskId){
-					$.post("${pageContext.request.contextPath}/taskAction_showData.action",{"taskId":taskId},function(data){
-						$("#div"+taskId).html(data);
-					});
-				}
-				
-				function toggleData(taskId){
-						$("#div"+taskId).toggle();
-				}
-			</script>
 			<tbody>
-			
+				<!-- 迭代任务集合 -->
 				<s:iterator value="list" var="task">
 					<tr>
 						<td><s:property value="id"/> </td>

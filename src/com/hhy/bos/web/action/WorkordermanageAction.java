@@ -37,7 +37,7 @@ public class WorkordermanageAction extends BaseAction<Workordermanage>{
 	public String start(){
 		//启动流程实例，设置流程变量，修改工作单当中的start为“1”
 		String id = model.getId();  //工作单id
-		workordermanageService.start();
+		workordermanageService.start(id);
 		return "tolist";
 	}
 }
