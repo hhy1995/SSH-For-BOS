@@ -51,6 +51,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#grid").datagrid({
+				//通过键值对的方式，设置一些表格的属性
 				columns:[[     //定义标题所有的行
 				          {field:'id',title:'编号',checkbox:true},
 				          {field:'name',title:'姓名'},

@@ -10,7 +10,7 @@
 	<package name="basicstruts2" extends="struts-default">
 		
 		<interceptors>
-			<!-- 注册拦截器 -->
+			<!-- 注册自定义拦截器，后面用到shiro之后，这个自定义拦截器就不再使用-->
 			<interceptor name="BOSLoginInterceptor" class="com.hhy.bos.web.interceptor.BOSLoginInterceptor">
 				<param name="excludeMethods">login</param>
 			</interceptor>

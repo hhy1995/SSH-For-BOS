@@ -92,7 +92,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>{
 	public void pageQuery(PageBean pageBean) {
 		int currentPage = pageBean.getCurrentPage();
 		int pageSize = pageBean.getPageSize();
-		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();   //离线条件查询对象
 		//总的数据量，  select count(*) from bc_staff
 		//需要改变Hibernate框架发出sql的形式
 		detachedCriteria.setProjection(Projections.rowCount());   // select count(*) from bc_staff，发的sql语句比较特殊，会重置表和类的映射关系

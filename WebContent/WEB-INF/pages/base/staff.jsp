@@ -191,10 +191,7 @@
 	//双击事件处理函数
 	function doDblClickRow(rowIndex, rowData){
 		$('#editStaffWindow').window("open");   //打开修改窗口，回显数据
-		//$("input[name=name]").val(rowData.name);
-		//alert(rowData.name);
 		$("#editStaffForm").form("load",rowData); //将rowData数据装载到表单当中
-		
 	}
 	
 	//扩展手机号校验规则，

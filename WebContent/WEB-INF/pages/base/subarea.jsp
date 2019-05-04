@@ -196,7 +196,8 @@
 	});
 
 	function doDblClickRow(){
-		alert("双击表格数据...");
+		$('#editSubareaWindow').window("open");   //打开修改窗口，回显数据
+		$("#editSubareaForm").form("load",rowData); //将rowData数据装载到表单当中
 	}
 </script>	
 </head>
@@ -329,6 +330,56 @@
 								});
 							</script>
 						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		
+		<!-- 修改分区信息 -->
+		<div region="center" style="overflow:auto;padding:5px;" border="false">
+			<form id="editSubareaForm" action="${pageContext.request.contextPath }/staffAction_edit.action" 
+				method="post">
+					<input type="hidden" name="id">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">分区信息</td>
+					</tr>
+					<tr>
+						<td>分区编号</td>
+						<td><input type="text" name="id" class="easyui-validatebox" required="false"/></td>
+					</tr>
+					<tr>
+						<td>选择区域</td>
+						<td>
+							<input class="easyui-combobox" name="region.id"  
+    							data-options="valueField:'id',textField:'name',mode:'remote',url:'${pageContext.request.contextPath}/regionAction_listajax.action'"/>  
+						</td>
+					</tr>
+					<tr>
+						<td>关键字</td>
+						<td><input type="text" name="addresskey" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>起始号</td>
+						<td><input type="text" name="startnum" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>终止号</td>
+						<td><input type="text" name="endnum" class="easyui-validatebox" required="true"/></td>
+					</tr>
+					<tr>
+						<td>单双号</td>
+						<td>
+							<select class="easyui-combobox" name="single" style="width:150px;">  
+							    <option value="0">单双号</option>  
+							    <option value="1">单号</option>  
+							    <option value="2">双号</option>  
+							</select> 
+						</td>
+					</tr>
+					<tr>
+						<td>位置信息</td>
+						<td><input type="text" name="position" class="easyui-validatebox" required="true" style="width:250px;"/></td>
 					</tr>
 				</table>
 			</form>

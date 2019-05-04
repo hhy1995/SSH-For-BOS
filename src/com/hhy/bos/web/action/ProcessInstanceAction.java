@@ -28,8 +28,27 @@ import com.opensymphony.xwork2.ActionSupport;
 @Controller
 @Scope("prototype")
 public class ProcessInstanceAction extends ActionSupport {
+	private String deploymentId;
+	private String imageName;
+	
 	ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
+	public String getDeploymentId() {
+		return deploymentId;
+	}
+
+	public void setDeploymentId(String deploymentId) {
+		this.deploymentId = deploymentId;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+	
 	/**
 	 * 查询流程实例列表数据
 	 */
@@ -96,25 +115,6 @@ public class ProcessInstanceAction extends ActionSupport {
 		ActionContext.getContext().getValueStack().set("height", height);
 		
 		return "showPng";
-	}
-
-	private String deploymentId;
-	private String imageName;
-	
-	public String getDeploymentId() {
-		return deploymentId;
-	}
-
-	public void setDeploymentId(String deploymentId) {
-		this.deploymentId = deploymentId;
-	}
-
-	public String getImageName() {
-		return imageName;
-	}
-
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
 	}
 
 	/**
